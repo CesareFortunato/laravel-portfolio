@@ -9,12 +9,12 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return "sei nella dashboard";
+        return view('admin.dashboard');
 
     }
 
     public function profile()
     {
-        return "pagina profile backoffice";
+        return view('admin.profile');
     }
 }

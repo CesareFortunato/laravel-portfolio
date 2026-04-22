@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['auth', 'verified'])
-    ->name("admin")
+    ->name("admin.")
     ->prefix("admin")
     ->group(function () {
         Route::get("/", [DashboardController::class, 'index'])
