@@ -17,9 +17,9 @@ class ProjectsTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
     $newProject = new Project();
     $newProject->title = $faker->word();
-    $newProject->slug = $faker->word();
+    $newProject->slug = $faker->unique()->word();
     $newProject->description = $faker->sentence();
-    $newProject->image = $faker->imageUrl();
+    $newProject->image = 'https://picsum.photos/400/300';
     $newProject->project_url = $faker->url();
     $newProject->type = $faker->word();
     $newProject->technologies = $faker->word();
