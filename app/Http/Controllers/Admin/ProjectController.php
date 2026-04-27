@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -12,7 +13,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all(); 
+        $projects = Project::all();
 
         return view('admin.projects.index', compact('projects'));
     }
@@ -36,7 +37,26 @@ class ProjectController extends Controller
 
         $newProject->title = $data['title'];
         $newProject->description = $data['description'];
-        $newProject->status = $data['status'];
+        $newProject->image = $data['image'];
+        $newProject->project_url = $data['project_url'];
+        $newProject->type = $data['type'];
+        $newProject->technologies = $data['technologies'];
+        $newProject->is_published = $request->has('is_published');
+
+        $slug = Str::slug($data['title']);
+        $originalSlug = $slug;
+        $counter = 1;
+
+        while (Project::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $counter;
+            $counter++;
+        }
+
+        $newProject->slug = $slug;
+
+        $newProject->save();
+
+        return redirect()->route('admin.projects.show', $newProject);
     }
 
     /**
