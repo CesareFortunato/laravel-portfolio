@@ -31,13 +31,17 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $data = $request->all();
 
         $newProject = new Project();
 
         $newProject->title = $data['title'];
         $newProject->description = $data['description'];
-        $newProject->image = $data['image'];
+        if ($request->hasFile('image')) {
+            $newProject->image = $request->file('image')->store('projects', 'public');
+        }
         $newProject->project_url = $data['project_url'];
         $newProject->type = $data['type'];
         $newProject->technologies = $data['technologies'];
@@ -56,7 +60,7 @@ class ProjectController extends Controller
 
         $newProject->save();
 
-        return redirect()->route('admin.projects.show', $newProject);
+        return redirect()->route('admin.projects.show', $newProject->id);
     }
 
     /**
@@ -84,7 +88,9 @@ class ProjectController extends Controller
 
         $project->title = $data['title'];
         $project->description = $data['description'];
-        $project->image = $data['image'];
+        if ($request->hasFile('image')) {
+            $project->image = $request->file('image')->store('projects', 'public');
+        }
         $project->project_url = $data['project_url'];
         $project->type = $data['type'];
         $project->technologies = $data['technologies'];

@@ -29,7 +29,7 @@
                 {{-- Tipo --}}
                 <div class="col-md-6">
                     <label for="type" class="form-label">Tipo Progetto</label>
-                    <input type="text" name="type" id="type" class="form-control value="{{ $project->type }}>
+                    <input type="text" name="type" id="type" value="{{ $project->type }}" class="form-control">
                 </div>
 
                 {{-- Tecnologie --}}
@@ -41,13 +41,15 @@
                 {{-- Immagine --}}
                 <div class="col-md-6">
                     <label for="image" class="form-label">Immagine</label>
-                    <input type="file" name="image" id="image" value="{{ $project->image }}" class="form-control">
+                    <input type="file" name="image" id="image" class="form-control">
                 </div>
 
                 {{-- Checkbox --}}
                 <div class="col-md-6 d-flex align-items-end">
                     <div class="form-check">
-                        <input type="checkbox" name="is_published" id="is_published" value="{{ $project->is_published }}" class="form-check-input">
+                        <input type="checkbox" name="is_published" id="is_published"
+        class="form-check-input"
+        {{ $project->is_published ? 'checked' : '' }}>
                         <label for="is_published" class="form-check-label">Pubblicato</label>
                     </div>
                 </div>

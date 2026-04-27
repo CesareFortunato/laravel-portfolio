@@ -13,7 +13,8 @@
                 {{ $project->title }}
             </h1>
 
-            <img src="{{ $project->image }}" alt="{{ $project->title }}" class="w-full max-w-md mb-4 rounded">
+            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"
+                class="w-full max-w-md mb-4 rounded">
 
             <p class="mb-4 text-gray-700">
                 {{ $project->description }}
