@@ -12,16 +12,16 @@ class Project extends Model
         'description',
         'image',
         'project_url',
-        'type',
-        'technologies',
         'is_published',
     ];
 
-    public function type(){
+    public function type()
+    {
         return $this->belongsTo(Type::class);
     }
 
-    public function technologies(){
+    public function technologies()
+    {
         return $this->belongsToMany(Technology::class);
     }
 }

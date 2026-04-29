@@ -23,6 +23,7 @@
                 {{ $project->title }}
             </h1>
 
+
             <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"
                 class="w-full max-w-md mb-4 rounded">
 
@@ -35,7 +36,15 @@
             </div>
 
             <div class="mb-2">
-                <strong>Tecnologie:</strong> {{ $project->technologies }}
+                <strong>Tecnologie:</strong>
+                @forelse ($project->technologies as $technology)
+                    <span class="badge" style="background-color: {{ $technology->color }}">
+                        {{ $technology->name }}
+                    </span>
+                    @empty
+                    Nessuna tecnologia specificata
+                @endforelse 
+
             </div>
 
             <div class="mb-2">

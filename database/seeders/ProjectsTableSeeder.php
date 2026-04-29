@@ -23,7 +23,7 @@ class ProjectsTableSeeder extends Seeder
     $newProject->image = 'https://picsum.photos/400/300';
     $newProject->type_id = rand(1,7);
     $newProject->project_url = $faker->url();
-    $newProject->technologies = $faker->word();
+    
     $newProject->is_published = $faker->boolean();
     $newProject->save();
 

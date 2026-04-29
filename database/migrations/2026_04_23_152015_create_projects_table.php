@@ -21,7 +21,7 @@ return new class extends Migration {
                 ->nullable()
                 ->constrained()
                 ->nullOnDelete();
-            $table->string('technologies')->nullable();
+            
             $table->boolean('is_published')->default(true);
             $table->timestamps();
         });
