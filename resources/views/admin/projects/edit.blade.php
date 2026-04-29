@@ -39,10 +39,15 @@
                 </div>
 
                 {{-- Tecnologie --}}
-                <div class="col-md-6">
-                    <label for="technologies" class="form-label">Tecnologie</label>
-                    <input type="text" name="technologies" id="technologies" value="{{ $project->technologies }}" class="form-control">
-                </div>
+                 @foreach ($technologies as $technology)
+                        <div class="form-check">
+                            <input type="checkbox" name="technologies[]" value="{{ $technology->id }}"
+                                id="tech-{{ $technology->id }}" {{$project->technologies->contains($technology->id)? 'checked' : ''}} class="form-check-input">
+                            <label for="tech-{{ $technology->id }}" class="form-check-label">
+                                {{ $technology->name }}
+                            </label>
+                        </div>
+                    @endforeach
 
                 {{-- Immagine --}}
                 <div class="col-md-6">

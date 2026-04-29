@@ -50,7 +50,7 @@ class ProjectController extends Controller
         }
         $newProject->project_url = $data['project_url'];
         $newProject->type_id = $data['type_id'];
-        
+
         $newProject->is_published = $request->has('is_published');
 
         $slug = Str::slug($data['title']);
@@ -88,7 +88,8 @@ class ProjectController extends Controller
     {
 
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -105,10 +106,18 @@ class ProjectController extends Controller
         }
         $project->project_url = $data['project_url'];
         $project->type_id = $data['type_id'];
-        $project->technologies = $data['technologies'];
+
         $project->is_published = $request->has('is_published');
 
         $project->update();
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($data['technologies']);
+        }else{
+            $project->technologies()->detach();
+        }
+
+
 
         return redirect()->route('admin.projects.show', $project);
 
