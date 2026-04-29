@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -26,8 +27,9 @@ class ProjectController extends Controller
     {
 
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.create', compact('types'));
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -48,7 +50,7 @@ class ProjectController extends Controller
         }
         $newProject->project_url = $data['project_url'];
         $newProject->type_id = $data['type_id'];
-        $newProject->technologies = $data['technologies'];
+        
         $newProject->is_published = $request->has('is_published');
 
         $slug = Str::slug($data['title']);
@@ -63,6 +65,8 @@ class ProjectController extends Controller
         $newProject->slug = $slug;
 
         $newProject->save();
+
+        $newProject->technologies()->attach($data['technologies']);
 
         return redirect()->route('admin.projects.show', $newProject->id);
     }

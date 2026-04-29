@@ -30,47 +30,55 @@
                     <select name="type_id" id="type_id">
                         @foreach ($types as $type){
                             <option value="{{ $type->id }}">{{ $type->name }}</option>
-                        }
-                        
+                            }
+
                         @endforeach
                     </select>
                 </div>
 
                 {{-- Tecnologie --}}
                 <div class="col-md-6">
-                    <label for="technologies" class="form-label">Tecnologie</label>
-                    <input type="text" name="technologies" id="technologies" class="form-control">
-                </div>
+                    <label class="form-label d-block">Tecnologie</label>
 
-                {{-- Immagine --}}
-                <div class="col-md-6">
-                    <label for="image" class="form-label">Immagine</label>
-                    <input type="file" name="image" id="image" class="form-control">
-                </div>
+                    @foreach ($technologies as $technology)
+                        <div class="form-check">
+                            <input type="checkbox" name="technologies[]" value="{{ $technology->id }}"
+                                id="tech-{{ $technology->id }}" class="form-check-input">
+                            <label for="tech-{{ $technology->id }}" class="form-check-label">
+                                {{ $technology->name }}
+                            </label>
+                        </div>
+                    @endforeach
 
-                {{-- Checkbox --}}
-                <div class="col-md-6 d-flex align-items-end">
-                    <div class="form-check">
-                        <input type="checkbox" name="is_published" id="is_published" class="form-check-input">
-                        <label for="is_published" class="form-check-label">Pubblicato</label>
+                    {{-- Immagine --}}
+                    <div class="col-md-6">
+                        <label for="image" class="form-label">Immagine</label>
+                        <input type="file" name="image" id="image" class="form-control">
                     </div>
+
+                    {{-- Checkbox --}}
+                    <div class="col-md-6 d-flex align-items-end">
+                        <div class="form-check">
+                            <input type="checkbox" name="is_published" id="is_published" class="form-check-input">
+                            <label for="is_published" class="form-check-label">Pubblicato</label>
+                        </div>
+                    </div>
+
+                    {{-- Descrizione (larga tutta) --}}
+                    <div class="col-12">
+                        <label for="description" class="form-label">Descrizione</label>
+                        <textarea name="description" id="description" rows="4" class="form-control"
+                            placeholder="Scrivi una descrizione..."></textarea>
+                    </div>
+
                 </div>
 
-                {{-- Descrizione (larga tutta) --}}
-                <div class="col-12">
-                    <label for="description" class="form-label">Descrizione</label>
-                    <textarea name="description" id="description" rows="4" class="form-control"
-                        placeholder="Scrivi una descrizione..."></textarea>
+                {{-- Bottone --}}
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        Salva progetto
+                    </button>
                 </div>
-
-            </div>
-
-            {{-- Bottone --}}
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary">
-                    Salva progetto
-                </button>
-            </div>
 
         </form>
     </div>
