@@ -29,7 +29,13 @@
                 {{-- Tipo --}}
                 <div class="col-md-6">
                     <label for="type" class="form-label">Tipo Progetto</label>
-                    <input type="text" name="type" id="type" value="{{ $project->type }}" class="form-control">
+                    <select name="type_id" id="type_id">
+                        @foreach ($types as $type){
+                            <option value="{{ $type->id }}" {{ $project->type_id == $type->id ? 'selected' : '' }}  >{{ $type->name }}</option>
+                        }
+                        
+                        @endforeach
+                    </select>
                 </div>
 
                 {{-- Tecnologie --}}

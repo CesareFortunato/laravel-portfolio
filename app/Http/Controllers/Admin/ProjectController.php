@@ -26,7 +26,7 @@ class ProjectController extends Controller
     {
 
         $types = Type::all();
-        
+
         return view('admin.projects.create', compact('types'));
     }
 
@@ -82,7 +82,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -98,7 +100,7 @@ class ProjectController extends Controller
             $project->image = $request->file('image')->store('projects', 'public');
         }
         $project->project_url = $data['project_url'];
-        $project->type = $data['type'];
+        $project->type_id = $data['type_id'];
         $project->technologies = $data['technologies'];
         $project->is_published = $request->has('is_published');
 
