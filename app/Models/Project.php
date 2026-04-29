@@ -16,4 +16,8 @@ class Project extends Model
         'technologies',
         'is_published',
     ];
+
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
 }

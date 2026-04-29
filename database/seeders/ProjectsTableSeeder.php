@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Str;
 use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,11 +18,11 @@ class ProjectsTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
     $newProject = new Project();
     $newProject->title = $faker->word();
-    $newProject->slug = $faker->unique()->word();
+    $newProject->slug = Str::slug($newProject->title) . '-' . $i;
     $newProject->description = $faker->sentence();
     $newProject->image = 'https://picsum.photos/400/300';
+    $newProject->type_id = rand(1,7);
     $newProject->project_url = $faker->url();
-    $newProject->type = $faker->word();
     $newProject->technologies = $faker->word();
     $newProject->is_published = $faker->boolean();
     $newProject->save();
