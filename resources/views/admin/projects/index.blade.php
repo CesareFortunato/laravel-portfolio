@@ -23,7 +23,16 @@
                         <td class="p-3">{{ $project->id }}</td>
                         <td class="p-3 font-semibold">{{ $project->title }}</td>
                         <td class="p-3">{{ $project->type?->name ?? '-' }}</td>
-                        <td class="p-3">{{ $project->technologies }}</td>
+                        <td class="p-3">
+                            @forelse($project->technologies as $technology)
+                                <span class="inline-block px-2 py-1 text-xs rounded text-white"
+                                    style="background-color: {{ $technology->color }}">
+                                    {{ $technology->name }}
+                                </span>
+                            @empty
+                                -
+                            @endforelse
+                        </td>
 
                         <td class="p-3">
                             @if($project->is_published)

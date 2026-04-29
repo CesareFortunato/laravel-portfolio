@@ -12,4 +12,8 @@
     <a href="{{ route('admin.projects.create') }}" class="bg-blue-600 text-blue px-4 py-2 rounded">
         Crea un nuovo Progetto
     </a>
+
+    <a href="{{ route('admin.technologies.index') }}" class="bg-blue-600 text-blue px-4 py-2 rounded">
+        Vai alle tecnologie
+    </a>
 @endsection
