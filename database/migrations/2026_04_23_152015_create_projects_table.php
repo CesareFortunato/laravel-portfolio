@@ -17,7 +17,10 @@ return new class extends Migration {
             $table->text('description');
             $table->string('image')->nullable();
             $table->string('project_url')->nullable();
-            $table->string('type')->nullable();
+            $table->foreignId('type_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
             $table->string('technologies')->nullable();
             $table->boolean('is_published')->default(true);
             $table->timestamps();
