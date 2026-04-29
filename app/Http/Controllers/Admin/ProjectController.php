@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -23,7 +24,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+
+        $types = Type::all();
+        
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -43,7 +47,7 @@ class ProjectController extends Controller
             $newProject->image = $request->file('image')->store('projects', 'public');
         }
         $newProject->project_url = $data['project_url'];
-        $newProject->type = $data['type'];
+        $newProject->type_id = $data['type_id'];
         $newProject->technologies = $data['technologies'];
         $newProject->is_published = $request->has('is_published');
 
@@ -69,7 +73,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
 
-    
+
         return view('admin.projects.show', compact('project'));
     }
 

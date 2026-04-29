@@ -31,7 +31,7 @@
             </p>
 
             <div class="mb-2">
-                <strong>Tipo:</strong> {{ $project->type }}
+                <strong>Tipo:</strong> {{ $project->type?->name ?? 'Nessun tipo' }}
             </div>
 
             <div class="mb-2">
