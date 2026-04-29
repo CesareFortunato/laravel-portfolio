@@ -22,7 +22,7 @@
                     <tr class="border-t">
                         <td class="p-3">{{ $project->id }}</td>
                         <td class="p-3 font-semibold">{{ $project->title }}</td>
-                        <td class="p-3">{{ $project->type }}</td>
+                        <td class="p-3">{{ $project->type?->name ?? '-' }}</td>
                         <td class="p-3">{{ $project->technologies }}</td>
 
                         <td class="p-3">
