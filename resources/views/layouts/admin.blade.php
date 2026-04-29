@@ -41,8 +41,8 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('dashboard') }}" class="block p-2 rounded hover:bg-gray-200">
-                        Area Utente
+                    <a href="{{ route('admin.types.index') }}" class="block p-2 rounded hover:bg-gray-200">
+                        Modifica Types
                     </a>
                 </li>
             </ul>
